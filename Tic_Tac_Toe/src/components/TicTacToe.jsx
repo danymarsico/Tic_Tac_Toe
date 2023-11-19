@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Board from "./TTTBoard";
 import Result from "./Result";
 import GameState from "./GameState";
+import GameReset from "./GameReset";
 
 const PLAYER_X = 'X';
 const PLAYER_O = 'O'
@@ -51,6 +52,10 @@ function TicTacToe() {
     const [gameState, setGameState] = useState(GameState.gameRunning);
 
     const handleTileClick = (index) => {
+        if(gameState !== GameState.gameRunning){
+            return;
+        }
+
         if (tiles[index] !== null) {
             return;
         }
@@ -78,6 +83,7 @@ function TicTacToe() {
             lineClass = {lineClass}
             />
             <Result gameState = {gameState}/>
+            <GameReset/>
         </div>
     );
 }
