@@ -93,3 +93,12 @@ h1 {
   left: 4.2%;
   transform: skewY(-45deg);
 }
+
+.result {
+  text-align: center;
+  border: #3500D3 8px;
+  border-style: dashed;
+  padding: 10px;
+  margin-top: 50px;
+  font-size: 1.5em;
+}
