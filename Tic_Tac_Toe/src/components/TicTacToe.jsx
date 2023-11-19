@@ -3,9 +3,16 @@ import Board from "./TTTBoard";
 import Result from "./Result";
 import GameState from "./GameState";
 import GameReset from "./GameReset";
+import click from "../sounds/click.wav";
+import game_over from "../sounds/game_over.wav";
 
 const PLAYER_X = 'X';
-const PLAYER_O = 'O'
+const PLAYER_O = 'O';
+
+const clickSound = new Audio(click);
+clickSound.volume = 0.3;
+const gameOverSound = new Audio(game_over);
+gameOverSound.volume = 0.3;
 
 const winningStrikes = [
     //Strikes for Rows
@@ -80,6 +87,18 @@ function TicTacToe() {
     useEffect(() => {
         checkWinner(tiles, setLineClass, setGameState);
     }, [tiles])
+
+    useEffect(() => {
+        if(tiles.some((tile) => tile !== null)) {
+            clickSound.play();
+        }
+    }, [tiles]);
+
+    useEffect(() => {
+        if(gameState !== GameState.gameRunning) {
+            gameOverSound.play();
+        }
+    }, [gameState]);
 
     return (
         <div>
