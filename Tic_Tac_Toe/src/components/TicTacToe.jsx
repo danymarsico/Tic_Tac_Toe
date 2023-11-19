@@ -70,6 +70,13 @@ function TicTacToe() {
         }
     };
 
+    const handleReset = () => {
+        setGameState(GameState.gameRunning);
+        setTiles(Array(9).fill(null));
+        setPlayerTurn(PLAYER_X);
+        setLineClass(null);
+    }
+
     useEffect(() => {
         checkWinner(tiles, setLineClass, setGameState);
     }, [tiles])
@@ -83,7 +90,7 @@ function TicTacToe() {
             lineClass = {lineClass}
             />
             <Result gameState = {gameState}/>
-            <GameReset/>
+            <GameReset gameState = {gameState} onReset = {handleReset}/>
         </div>
     );
 }
